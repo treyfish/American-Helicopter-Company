@@ -1,0 +1,13 @@
+{
+  "redirects": [
+    { "source": "/fleet", "destination": "/#fleet" },
+    { "source": "/build", "destination": "/#build" },
+    { "source": "/configurator", "destination": "/#configurator" },
+    { "source": "/story", "destination": "/#story" },
+    { "source": "/about", "destination": "/#story" },
+    { "source": "/pre-owned", "destination": "/#preowned" },
+    { "source": "/preowned", "destination": "/#preowned" },
+    { "source": "/contact", "destination": "/#contact" },
+    { "source": "/home", "destination": "/" }
+  ]
+}

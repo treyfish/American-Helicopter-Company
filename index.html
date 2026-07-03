@@ -5,6 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>American Helicopter Company — Authorized Robinson Dealer | Maiden, NC</title>
 <meta name="description" content="Power. Pride. Passion. American Helicopter Company is a veteran-owned, authorized Robinson Helicopter dealer in Maiden, NC — new builds, pre-owned sales, and aerial solutions.">
+<link rel="canonical" href="https://american-helicopter-company.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="American Helicopter Company">
+<meta property="og:title" content="American Helicopter Company — Authorized Robinson Dealer | Maiden, NC">
+<meta property="og:description" content="Veteran-owned Robinson Helicopter dealer. Spec your R22, R44, or R66 in the live 3D factory configurator — new builds, pre-owned sales, nationwide.">
+<meta property="og:url" content="https://american-helicopter-company.vercel.app/">
+<meta property="og:image" content="https://american-helicopter-company.vercel.app/assets/hero-poster.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="American Helicopter Company — Authorized Robinson Dealer">
+<meta name="twitter:description" content="Spec your Robinson in 3D. Veteran owned & operated — Maiden, NC.">
+<meta name="twitter:image" content="https://american-helicopter-company.vercel.app/assets/hero-poster.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "American Helicopter Company, LLC",
+  "description": "Veteran-owned, authorized Robinson Helicopter dealer offering new and pre-owned helicopter sales.",
+  "url": "https://american-helicopter-company.vercel.app/",
+  "telephone": "+1-704-906-8473",
+  "email": "info@americanhelicoptercompany.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3524 Airport Road",
+    "addressLocality": "Maiden",
+    "addressRegion": "NC",
+    "postalCode": "28650",
+    "addressCountry": "US"
+  },
+  "brand": { "@type": "Brand", "name": "Robinson Helicopter Company" }
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B0E13'/%3E%3Cpath d='M16 6l2.35 6.9L26 13l-6 4.6 2.2 7.4L16 20.4 9.8 25l2.2-7.4L6 13l7.65-.1z' fill='%23C8102E'/%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -445,7 +478,12 @@ tailwind.config = {
               title="Robinson Helicopter factory configurator"
               class="block w-full bg-[#f0ebe4]" style="height: min(78vh, 820px); min-height: 540px;" loading="lazy"></iframe>
     </div>
-    <p class="reveal mt-4 text-xs text-smoke/70">Configurator and factory pricing by Robinson Helicopter Company. Totals shown are Robinson MSRP — contact AHC for delivered pricing.</p>
+    <div class="reveal mt-4 flex flex-wrap items-center justify-between gap-3">
+      <p class="text-xs text-smoke/70">Configurator and factory pricing by Robinson Helicopter Company. Totals shown are Robinson MSRP — contact AHC for delivered pricing.</p>
+      <a id="cfg-fullscreen" href="https://configurator.robinsonheli.com/?helicopter=r44-cadet&menu=helicopter" target="_blank" rel="noopener" class="micro-label text-signal hover:text-ember transition-colors inline-flex items-center gap-2 shrink-0">Open Full Screen
+        <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+    </div>
 
     <!-- save-your-build steps -->
     <div class="mt-16 grid sm:grid-cols-3 gap-10">
@@ -834,6 +872,7 @@ function loadConfig(slug) {
   cfgSlug = slug;
   cfgFrame.src = `https://configurator.robinsonheli.com/?helicopter=${slug}&menu=helicopter`;
   cfgCurrent.textContent = CFG_NAMES[slug];
+  document.getElementById('cfg-fullscreen').href = `https://configurator.robinsonheli.com/?helicopter=${slug}&menu=helicopter`;
   document.querySelectorAll('.cfg-chip').forEach(c => c.classList.toggle('active', c.dataset.slug === slug));
 }
 document.querySelectorAll('.cfg-chip').forEach(chip =>
