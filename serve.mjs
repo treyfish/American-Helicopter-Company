@@ -28,10 +28,17 @@ createServer(async (req, res) => {
   try {
     let path = decodeURIComponent(new URL(req.url, `http://localhost:${PORT}`).pathname);
     if (path.endsWith('/')) path += 'index.html';
-    const file = normalize(join(ROOT, path));
+    let file = normalize(join(ROOT, path));
     if (!file.startsWith(normalize(ROOT))) { res.writeHead(403); return res.end('Forbidden'); }
 
-    const info = await stat(file);
+    // clean URLs: /build -> build.html (mirrors Vercel's cleanUrls)
+    let info;
+    try {
+      info = await stat(file);
+    } catch {
+      file = `${file}.html`;
+      info = await stat(file);
+    }
     const type = MIME[extname(file).toLowerCase()] || 'application/octet-stream';
 
     // Range support so <video> seeks work

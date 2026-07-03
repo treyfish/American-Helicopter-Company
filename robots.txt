@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /reference-old-site/
+Disallow: /reference-configurator/
+
+Sitemap: https://american-helicopter-company.vercel.app/sitemap.xml

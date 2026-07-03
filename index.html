@@ -72,14 +72,12 @@ tailwind.config = {
   body { background: #0B0E13; font-family: 'Libre Franklin', sans-serif; }
   section { scroll-margin-top: 72px; }
 
-  /* ---- grain ---- */
   .grain::after {
     content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     opacity: .055; mix-blend-mode: overlay;
   }
 
-  /* ---- hero atmosphere ---- */
   .hero-veil {
     background:
       radial-gradient(120% 90% at 18% 8%, rgba(11,14,19,.45) 0%, rgba(11,14,19,0) 55%),
@@ -87,19 +85,15 @@ tailwind.config = {
       linear-gradient(to top, #0B0E13 2%, rgba(11,14,19,.55) 28%, rgba(11,14,19,.30) 60%, rgba(11,14,19,.62) 100%);
   }
 
-  /* ---- big display type ---- */
   .display-hed { font-family: 'Big Shoulders Display', sans-serif; letter-spacing: -0.015em; line-height: .88; text-transform: uppercase; }
   .micro-label { font-family: 'Libre Franklin', sans-serif; font-size: .68rem; letter-spacing: .28em; text-transform: uppercase; font-weight: 600; }
 
-  /* ---- marquee ---- */
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .marquee-track { display: flex; width: max-content; animation: marquee 36s linear infinite; will-change: transform; }
   .marquee-track:hover { animation-play-state: paused; }
-
   @keyframes marquee-giant { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .marquee-giant { display: flex; width: max-content; animation: marquee-giant 60s linear infinite; will-change: transform; }
 
-  /* ---- buttons ---- */
   .btn-signal {
     position: relative; display: inline-flex; align-items: center; gap: .75rem;
     background: var(--signal); color: #F2EEE4;
@@ -126,7 +120,6 @@ tailwind.config = {
     outline: 2px solid #E8362F; outline-offset: 3px;
   }
 
-  /* ---- nav ---- */
   .nav-link { position: relative; transition: color .25s ease; }
   .nav-link::after {
     content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 100%;
@@ -134,67 +127,26 @@ tailwind.config = {
     transition: transform .35s cubic-bezier(.22,1,.36,1);
   }
   .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); transform-origin: left; }
+  .nav-link.active { color: #F2EEE4; }
   .nav-scrolled { background: rgba(11,14,19,.9); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(242,238,228,.08); }
 
-  /* ---- fleet ---- */
   .fleet-tab { transition: color .3s ease, border-color .3s ease, opacity .3s ease; }
   .fleet-tab[aria-selected="true"] { color: #F2EEE4; border-color: var(--signal); opacity: 1; }
   .fleet-heli { filter: drop-shadow(0 42px 60px rgba(0,0,0,.55)) drop-shadow(0 8px 22px rgba(200,16,46,.10)); }
-  .fleet-pad {
-    background: radial-gradient(58% 70% at 50% 50%, rgba(200,16,46,.13) 0%, rgba(200,16,46,0) 70%);
-  }
+  .fleet-pad { background: radial-gradient(58% 70% at 50% 50%, rgba(200,16,46,.13) 0%, rgba(200,16,46,0) 70%); }
 
-  /* ---- build cards ---- */
-  .build-card { transition: transform .4s cubic-bezier(.22,1,.36,1); }
-  .build-card:hover { transform: translateY(-8px); }
-  .build-card .card-img { transition: transform .55s cubic-bezier(.22,1,.36,1); }
-  .build-card:hover .card-img { transform: scale(1.05) translateX(6px); }
-  .build-card .card-rule { transition: transform .4s cubic-bezier(.22,1,.36,1); transform: scaleX(.22); transform-origin: left; }
-  .build-card:hover .card-rule { transform: scaleX(1); }
-  .build-card:active { transform: translateY(-4px) scale(.995); }
+  .index-row { transition: background-color .3s ease; }
+  .index-row:hover { background: rgba(242,238,228,.04); }
+  .index-row .index-arrow { transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .3s ease; opacity: .35; }
+  .index-row:hover .index-arrow { transform: translateX(10px); opacity: 1; }
+  .index-row:active .index-arrow { transform: translateX(14px); }
 
-  /* ---- story photo treatment ---- */
-  .photo-treat { position: relative; overflow: hidden; }
-  .photo-treat img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .photo-treat::before {
-    content: ''; position: absolute; inset: 0; z-index: 2;
-    background: linear-gradient(to top, rgba(11,14,19,.62) 0%, rgba(11,14,19,0) 55%);
-  }
-  .photo-treat::after {
-    content: ''; position: absolute; inset: 0; z-index: 2;
-    background: linear-gradient(145deg, rgba(200,16,46,.28), rgba(61,90,143,.22));
-    mix-blend-mode: multiply;
-  }
-
-  /* ---- forms ---- */
-  .field {
-    width: 100%; background: transparent; color: #F2EEE4;
-    border: 0; border-bottom: 1px solid rgba(242,238,228,.22);
-    padding: .9rem 0; font-size: .95rem;
-    transition: border-color .3s ease;
-  }
-  .field::placeholder { color: rgba(138,148,166,.75); }
-  .field:hover { border-color: rgba(242,238,228,.4); }
-  .field:focus { outline: none; border-color: var(--signal); }
-  .check-chip { cursor: pointer; user-select: none; transition: background-color .25s ease, border-color .25s ease, color .25s ease, transform .25s cubic-bezier(.34,1.56,.64,1); }
-  .check-chip:hover { border-color: rgba(242,238,228,.55); transform: translateY(-2px); }
-  .check-chip:has(input:checked) { background: var(--signal); border-color: var(--signal); color: #F2EEE4; }
-  .check-chip input { position: absolute; opacity: 0; pointer-events: none; }
-  .cfg-chip { transition: background-color .25s ease, border-color .25s ease, color .25s ease, transform .25s cubic-bezier(.34,1.56,.64,1); }
-  .cfg-chip:hover { transform: translateY(-2px); }
-  .cfg-chip:active { transform: translateY(0); }
-  .cfg-chip.active { background: var(--signal); border-color: var(--signal); color: #F2EEE4; }
-
-  /* ---- reveal states (JS sets initial transforms; this is the no-JS fallback) ---- */
   @media (prefers-reduced-motion: reduce) {
     .marquee-track, .marquee-giant { animation: none; }
     html { scroll-behavior: auto; }
   }
 
-  /* section number watermark */
   .sec-num { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(138,148,166,.18); user-select: none; }
-  .sec-num-light { -webkit-text-stroke: 1px rgba(11,14,19,.14); }
-
   .blueprint-rule { background: repeating-linear-gradient(to right, rgba(138,148,166,.35) 0 6px, transparent 6px 12px); height: 1px; }
 </style>
 </head>
@@ -204,7 +156,7 @@ tailwind.config = {
 <!-- ============ NAV ============ -->
 <header id="site-nav" class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
   <div class="max-w-[1500px] mx-auto flex items-center justify-between px-5 sm:px-8 h-[72px]">
-    <a href="#top" class="flex items-baseline gap-2 select-none" aria-label="American Helicopter Company — home">
+    <a href="/" class="flex items-baseline gap-2 select-none" aria-label="American Helicopter Company — home">
       <span class="font-display font-900 uppercase text-[1.35rem] leading-none tracking-tight">
         <span class="text-signal font-black">American</span>
         <span class="text-bone font-black">Helicopter</span>
@@ -212,11 +164,11 @@ tailwind.config = {
       </span>
     </a>
     <nav class="hidden lg:flex items-center gap-9" aria-label="Primary">
-      <a href="#fleet" class="nav-link micro-label text-smoke hover:text-bone">The Fleet</a>
-      <a href="#build" class="nav-link micro-label text-smoke hover:text-bone">Build</a>
-      <a href="#story" class="nav-link micro-label text-smoke hover:text-bone">Our Story</a>
-      <a href="#preowned" class="nav-link micro-label text-smoke hover:text-bone">Pre-Owned</a>
-      <a href="#contact" class="nav-link micro-label text-smoke hover:text-bone">Contact</a>
+      <a href="/#fleet" class="nav-link micro-label text-smoke hover:text-bone">The Fleet</a>
+      <a href="/build" class="nav-link micro-label text-smoke hover:text-bone">Build</a>
+      <a href="/story" class="nav-link micro-label text-smoke hover:text-bone">Our Story</a>
+      <a href="/preowned" class="nav-link micro-label text-smoke hover:text-bone">Pre-Owned</a>
+      <a href="/contact" class="nav-link micro-label text-smoke hover:text-bone">Contact</a>
       <a href="tel:7049068473" class="btn-signal !py-3 !px-6">704.906.8473</a>
     </nav>
     <button id="menu-btn" class="lg:hidden flex flex-col gap-[6px] p-3 -mr-3" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -225,14 +177,13 @@ tailwind.config = {
       <span class="block w-7 h-[2px] bg-bone transition-transform duration-300"></span>
     </button>
   </div>
-  <!-- mobile menu -->
   <div id="mobile-menu" class="hidden lg:hidden bg-hangar/97 backdrop-blur-xl border-t border-bone/10">
     <nav class="flex flex-col px-8 py-8 gap-6" aria-label="Mobile">
-      <a href="#fleet" class="mobile-link font-display font-800 uppercase text-3xl tracking-tight">The Fleet</a>
-      <a href="#build" class="mobile-link font-display font-800 uppercase text-3xl tracking-tight">Build</a>
-      <a href="#story" class="mobile-link font-display font-800 uppercase text-3xl tracking-tight">Our Story</a>
-      <a href="#preowned" class="mobile-link font-display font-800 uppercase text-3xl tracking-tight">Pre-Owned</a>
-      <a href="#contact" class="mobile-link font-display font-800 uppercase text-3xl tracking-tight">Contact</a>
+      <a href="/#fleet" class="font-display font-800 uppercase text-3xl tracking-tight">The Fleet</a>
+      <a href="/build" class="font-display font-800 uppercase text-3xl tracking-tight">Build</a>
+      <a href="/story" class="font-display font-800 uppercase text-3xl tracking-tight">Our Story</a>
+      <a href="/preowned" class="font-display font-800 uppercase text-3xl tracking-tight">Pre-Owned</a>
+      <a href="/contact" class="font-display font-800 uppercase text-3xl tracking-tight">Contact</a>
       <a href="tel:7049068473" class="btn-signal w-max mt-2">704.906.8473</a>
     </nav>
   </div>
@@ -253,7 +204,7 @@ tailwind.config = {
       <span class="hero-word block">Passion<span class="text-signal">.</span></span>
     </h1>
     <div class="hero-el mt-8 flex flex-wrap items-center gap-4">
-      <a href="#build" class="btn-signal">Start Your Build
+      <a href="/build" class="btn-signal">Start Your Build
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.6"/></svg>
       </a>
       <a href="#fleet" class="btn-ghost">Explore the Fleet</a>
@@ -267,7 +218,6 @@ tailwind.config = {
     </div>
   </div>
 
-  <!-- credibility ticker -->
   <div class="relative z-[4] border-t border-bone/10 bg-hangar/60 backdrop-blur-md overflow-hidden" aria-hidden="true">
     <div class="marquee-track py-4">
       <div class="flex shrink-0 items-center">
@@ -297,7 +247,6 @@ tailwind.config = {
   </div>
 
   <div class="max-w-[1500px] mx-auto px-5 sm:px-8 pb-24 sm:pb-32">
-    <!-- tabs -->
     <div role="tablist" aria-label="Helicopter families" class="reveal flex gap-2 sm:gap-6 border-b border-bone/10 mb-10">
       <button class="fleet-tab font-display font-800 uppercase text-2xl sm:text-4xl tracking-tight text-smoke opacity-60 border-b-[3px] border-transparent pb-3 px-2" role="tab" aria-selected="false" data-fam="r22" id="tab-r22" aria-controls="fleet-panel">R22</button>
       <button class="fleet-tab font-display font-800 uppercase text-2xl sm:text-4xl tracking-tight text-smoke opacity-60 border-b-[3px] border-transparent pb-3 px-2" role="tab" aria-selected="false" data-fam="r44" id="tab-r44" aria-controls="fleet-panel">R44</button>
@@ -305,18 +254,16 @@ tailwind.config = {
     </div>
 
     <div id="fleet-panel" role="tabpanel" class="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-6 items-center">
-      <!-- copy / specs -->
       <div>
         <h3 id="fleet-name" class="display-hed font-black text-[clamp(2.6rem,5vw,4.6rem)] text-bone"></h3>
         <p id="fleet-tag" class="mt-2 micro-label text-signal"></p>
         <p id="fleet-desc" class="mt-6 text-smoke leading-[1.8] max-w-lg"></p>
         <dl id="fleet-specs" class="mt-9 grid grid-cols-2 gap-x-8 gap-y-7 max-w-lg"></dl>
         <div class="mt-10 flex flex-wrap items-center gap-5">
-          <a href="#configurator" id="fleet-build-btn" class="btn-signal">Build This Ship</a>
+          <a href="/build" id="fleet-build-btn" class="btn-signal">Build This Ship</a>
           <p class="micro-label text-smoke">From <span id="fleet-price" class="text-bone text-base tracking-normal font-display font-800"></span></p>
         </div>
       </div>
-      <!-- image -->
       <div class="relative fleet-pad min-h-[280px] sm:min-h-[380px] lg:min-h-[480px] flex items-center justify-center">
         <div class="absolute bottom-[12%] left-1/2 -translate-x-1/2 w-[74%] h-[1px] blueprint-rule" aria-hidden="true"></div>
         <img id="fleet-img" src="assets/R66-Riviera-front-v2.png" alt="Robinson R66 helicopter, front view" class="fleet-heli relative z-[2] w-full max-w-[720px]">
@@ -333,186 +280,8 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- ============ BUILD ============ -->
-<section id="build" class="relative bg-bone text-hangar grain overflow-hidden">
-  <span class="sec-num sec-num-light absolute top-10 right-4 sm:right-10 text-[clamp(6rem,16vw,15rem)]" aria-hidden="true">02</span>
-  <div class="max-w-[1500px] mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-24 sm:pb-32">
-    <p class="reveal micro-label text-signal mb-4">002 / Build Your Robinson</p>
-    <h2 class="reveal display-hed font-black text-[clamp(3rem,7.5vw,6.5rem)]">Spec it. Sign it.<br>Fly it home.</h2>
-    <p class="reveal mt-6 max-w-xl text-hangar/70 leading-[1.8]">Every new Robinson is built to order. Pick your ship, pick your equipment, and we handle the rest — from factory order to delivery day.</p>
-
-    <!-- R66 -->
-    <div class="mt-20">
-      <div class="reveal flex items-baseline gap-5 mb-8">
-        <h3 class="display-hed font-black text-[clamp(2.4rem,4.5vw,3.8rem)]">R66 <span class="text-signal">Turbine</span></h3>
-        <div class="blueprint-rule flex-1 opacity-60"></div>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-        <a href="#contact" class="build-card reveal group block" data-model="R66 NXG The Riviera Edition" data-inquire="true">
-          <div class="overflow-hidden"><img src="assets/R66-Riviera-front-v2.png" alt="R66 NXG The Riviera Edition helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R66 NXG · The Riviera Edition</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $1,693,000 · Limited Edition</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Inquire <span aria-hidden="true">→</span></p>
-        </a>
-        <a href="#configurator" class="build-card reveal group block" data-model="R66 NXG Palo Verde" data-slug="r66-nx-g-palo-verde">
-          <div class="overflow-hidden"><img src="assets/BLUE-R66-PALO-VERDE-FRONT-V4.png" alt="R66 NXG Palo Verde helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R66 NXG · Palo Verde</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $1,489,000</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-        <a href="#configurator" class="build-card reveal group block" data-model="R66 NXG Southwood" data-slug="r66-nx-g-southwood">
-          <div class="overflow-hidden"><img src="assets/R66-SOUTHWOOD-FRONT-V4.png" alt="R66 NXG Southwood helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R66 NXG · Southwood</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $1,387,000</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-      </div>
-    </div>
-
-    <!-- R44 -->
-    <div class="mt-24">
-      <div class="reveal flex items-baseline gap-5 mb-8">
-        <h3 class="display-hed font-black text-[clamp(2.4rem,4.5vw,3.8rem)]">R44 <span class="text-signal">Series</span></h3>
-        <div class="blueprint-rule flex-1 opacity-60"></div>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-        <a href="#configurator" class="build-card reveal group block" data-model="R44 Raven II" data-slug="r44-raven-ii">
-          <div class="overflow-hidden"><img src="assets/RAVEN-II-FRONT-ALPHA.png" alt="R44 Raven II helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R44 Raven II</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $615,500</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-        <a href="#configurator" class="build-card reveal group block" data-model="R44 Clipper II Fixed" data-slug="r44-clipper-ii-fixed">
-          <div class="overflow-hidden"><img src="assets/CLIPPER-II-FIXED-FRONT-alpha-V2.png" alt="R44 Clipper II Fixed floats helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R44 Clipper II Fixed</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $656,500</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-        <a href="#configurator" class="build-card reveal group block" data-model="R44 Clipper II Popout" data-slug="r44-clipper-ii-popout">
-          <div class="overflow-hidden"><img src="assets/CLIPPER-POPOUT-FRONT-ALPHA-V1.png" alt="R44 Clipper II Popout floats helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R44 Clipper II Popout</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $687,000</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-        <a href="#configurator" class="build-card reveal group block" data-model="R44 Raven I" data-slug="r44-raven-i">
-          <div class="overflow-hidden"><img src="assets/RAVEN-I-FRONT-ALPHA.png" alt="R44 Raven I helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R44 Raven I</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $527,000</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-        <a href="#configurator" class="build-card reveal group block" data-model="R44 Clipper I" data-slug="r44-clipper-i">
-          <div class="overflow-hidden"><img src="assets/CLIPPER-I-FRONT-V3.png" alt="R44 Clipper I helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R44 Clipper I</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $567,500</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-        <a href="#configurator" class="build-card reveal group block" data-model="R44 Cadet" data-slug="r44-cadet">
-          <div class="overflow-hidden"><img src="assets/CADET-FRONT-V2-ALPHA.png" alt="R44 Cadet helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R44 Cadet</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $495,000</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-      </div>
-    </div>
-
-    <!-- R22 -->
-    <div class="mt-24">
-      <div class="reveal flex items-baseline gap-5 mb-8">
-        <h3 class="display-hed font-black text-[clamp(2.4rem,4.5vw,3.8rem)]">R22 <span class="text-signal">Beta II</span></h3>
-        <div class="blueprint-rule flex-1 opacity-60"></div>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-        <a href="#configurator" class="build-card reveal group block" data-model="R22 Beta II" data-slug="r22-beta-ii">
-          <div class="overflow-hidden"><img src="assets/R22-RED-VOLCANO-FRONT-ALPHA-V3.png" alt="R22 Beta II helicopter" class="card-img w-full" loading="lazy"></div>
-          <div class="card-rule h-[3px] bg-signal mt-6"></div>
-          <h4 class="font-display font-800 uppercase text-2xl tracking-tight mt-4">R22 Beta II</h4>
-          <p class="mt-1 text-hangar/60 text-sm">MSRP $375,000</p>
-          <p class="micro-label text-signal mt-3 inline-flex items-center gap-2">Configure <span aria-hidden="true">→</span></p>
-        </a>
-        <div class="reveal sm:col-span-1 lg:col-span-2 flex items-end">
-          <p class="text-hangar/60 leading-[1.8] max-w-md">A true workhorse — the two-seat R22 Beta II has earned worldwide popularity for nearly 50 years. Flight training, pipeline patrol, livestock management: it does the job, every day.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONFIGURATOR ============ -->
-<section id="configurator" class="relative bg-gunmetal grain overflow-hidden border-t border-bone/8">
-  <span class="sec-num absolute top-10 right-4 sm:right-10 text-[clamp(6rem,16vw,15rem)]" aria-hidden="true">03</span>
-  <div class="max-w-[1500px] mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-24 sm:pb-32">
-    <p class="reveal micro-label text-signal mb-4">003 / Live Configurator</p>
-    <h2 class="reveal display-hed font-black text-[clamp(3rem,7.5vw,6.5rem)] text-bone">Spec it in 3D.<br>Right here.</h2>
-    <p class="reveal mt-6 max-w-xl text-smoke leading-[1.8]">Robinson's live factory configurator — every paint code, interior, and avionics package with real-time pricing and weight. Build your exact ship, download the build sheet, and send it straight to our hangar.</p>
-
-    <!-- model chips -->
-    <div class="reveal mt-10 flex flex-wrap gap-2" role="group" aria-label="Choose a model to configure">
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r22-beta-ii">R22 Beta II</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r44-cadet">R44 Cadet</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r44-cadet-with-floats">R44 Cadet Floats</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r44-raven-i">R44 Raven I</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r44-raven-ii">R44 Raven II</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r44-clipper-i">R44 Clipper I</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r44-clipper-ii-fixed">R44 Clipper II Fixed</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r44-clipper-ii-popout">R44 Clipper II Popout</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r66-nx-g-palo-verde">R66 NXG Palo Verde</button>
-      <button class="cfg-chip micro-label border border-bone/25 text-smoke px-4 py-2.5 hover:border-bone/60 hover:text-bone transition-colors" data-slug="r66-nx-g-southwood">R66 NXG Southwood</button>
-    </div>
-
-    <!-- framed configurator -->
-    <div class="reveal mt-8 border border-bone/12" style="clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%)">
-      <div class="flex items-center justify-between gap-4 bg-hangar px-5 py-3 border-b-2 border-signal">
-        <p class="micro-label text-bone/80"><span class="inline-block w-2 h-2 rounded-full bg-signal mr-2 animate-pulse"></span>Live Factory Configurator</p>
-        <p class="micro-label text-smoke hidden sm:block">Configuring: <span id="cfg-current" class="text-bone">R44 Cadet</span></p>
-      </div>
-      <iframe id="cfg-frame" src="https://configurator.robinsonheli.com/?helicopter=r44-cadet&menu=helicopter"
-              title="Robinson Helicopter factory configurator"
-              class="block w-full bg-[#f0ebe4]" style="height: min(78vh, 820px); min-height: 540px;" loading="lazy"></iframe>
-    </div>
-    <div class="reveal mt-4 flex flex-wrap items-center justify-between gap-3">
-      <p class="text-xs text-smoke/70">Configurator and factory pricing by Robinson Helicopter Company. Totals shown are Robinson MSRP — contact AHC for delivered pricing.</p>
-      <a id="cfg-fullscreen" href="https://configurator.robinsonheli.com/?helicopter=r44-cadet&menu=helicopter" target="_blank" rel="noopener" class="micro-label text-signal hover:text-ember transition-colors inline-flex items-center gap-2 shrink-0">Open Full Screen
-        <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.6"/></svg>
-      </a>
-    </div>
-
-    <!-- save-your-build steps -->
-    <div class="mt-16 grid sm:grid-cols-3 gap-10">
-      <div class="reveal">
-        <p class="display-hed font-black text-4xl text-bone/25">01</p>
-        <h3 class="font-display font-800 uppercase text-2xl tracking-tight text-bone mt-3">Spec your ship</h3>
-        <p class="mt-3 text-smoke text-sm leading-[1.7]">Pick a model above, then work through color, interior, and equipment. Price and weight update live as you build.</p>
-      </div>
-      <div class="reveal">
-        <p class="display-hed font-black text-4xl text-bone/25">02</p>
-        <h3 class="font-display font-800 uppercase text-2xl tracking-tight text-bone mt-3">Download the sheet</h3>
-        <p class="mt-3 text-smoke text-sm leading-[1.7]">Hit <strong class="text-bone">Done</strong> in the configurator for your itemized build sheet, then <strong class="text-bone">Download PDF</strong> — print it or save it.</p>
-      </div>
-      <div class="reveal">
-        <p class="display-hed font-black text-4xl text-bone/25">03</p>
-        <h3 class="font-display font-800 uppercase text-2xl tracking-tight text-bone mt-3">Send it to us</h3>
-        <p class="mt-3 text-smoke text-sm leading-[1.7]">Attach your build sheet and we'll quote delivered pricing, timeline, and trade-in options.</p>
-        <button id="attach-build" class="btn-signal mt-5 !py-3 !px-6">
-          <svg width="13" height="14" viewBox="0 0 13 14" fill="none" aria-hidden="true"><path d="M11.5 6.5l-5 5a3.2 3.2 0 01-4.5-4.5L7.5 1.5a2.1 2.1 0 013 3L5 10a1 1 0 01-1.5-1.5L8 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-          Attach Build Sheet
-        </button>
-        <input id="build-file" type="file" accept="application/pdf" class="sr-only" aria-label="Attach your build sheet PDF">
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ STATS ============ -->
-<section class="relative bg-hangar grain border-y border-bone/8">
+<section class="relative bg-hangar grain">
   <div class="max-w-[1500px] mx-auto px-5 sm:px-8 py-20 sm:py-28 grid grid-cols-2 lg:grid-cols-4 gap-y-14 gap-x-8">
     <div class="reveal">
       <p class="display-hed font-black text-[clamp(3.4rem,6vw,5.5rem)] text-bone"><span class="count" data-to="3">0</span></p>
@@ -533,141 +302,37 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ STORY ============ -->
-<section id="story" class="relative bg-panel grain overflow-hidden">
-  <span class="sec-num absolute top-10 right-4 sm:right-10 text-[clamp(6rem,16vw,15rem)]" aria-hidden="true">04</span>
-  <div class="max-w-[1500px] mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-24 sm:pb-32">
-    <p class="reveal micro-label text-signal mb-4">004 / Our Story</p>
-    <h2 class="reveal display-hed font-black text-[clamp(3rem,7.5vw,6.5rem)] text-bone max-w-5xl">Driven by passion.<br>Powered by purpose.</h2>
-
-    <div class="mt-16 grid lg:grid-cols-[1.1fr_1fr] gap-14 lg:gap-20 items-start">
-      <div>
-        <p class="reveal text-bone/85 text-lg leading-[1.8]">From the racetrack to the runway — American Helicopter Company was built on one man's relentless drive to push boundaries. Marine veteran <strong class="text-bone">Matt McSwain</strong> has spent his life chasing speed, precision, and performance: building his first car as a kid, wrenching on NASCAR pit crews, and launching ventures across the automotive, motorcycle, and aviation worlds.</p>
-        <p class="reveal mt-6 text-smoke leading-[1.8]">When Hurricane Helene devastated Western North Carolina in 2024, Matt co-founded <strong class="text-bone/90">Operation Helo</strong> — partnering with Operation Airdrop to deliver lifesaving aid to families cut off from the world. There, he watched Robinson helicopters keep flying when everything else stopped.</p>
-        <p class="reveal mt-6 text-smoke leading-[1.8]">That's when it clicked. A personal relationship with Robinson president David Smith — and Robinson's willingness to do whatever it took to keep ships in the fight — convinced Matt he wanted to be part of that commitment. Today, that same passion fuels American Helicopter Company.</p>
-
-        <!-- timeline -->
-        <ol class="mt-12 space-y-0">
-          <li class="reveal relative pl-9 pb-9 border-l border-bone/15">
-            <span class="absolute left-[-5px] top-1 w-[9px] h-[9px] bg-signal rotate-45" aria-hidden="true"></span>
-            <p class="micro-label text-signal">The Foundation</p>
-            <p class="mt-2 text-smoke text-sm leading-[1.7]">United States Marine Corps. NASCAR pit crews. A lifetime of machines that have to perform when it matters.</p>
-          </li>
-          <li class="reveal relative pl-9 pb-9 border-l border-bone/15">
-            <span class="absolute left-[-5px] top-1 w-[9px] h-[9px] bg-signal rotate-45" aria-hidden="true"></span>
-            <p class="micro-label text-signal">2024 — Hurricane Helene</p>
-            <p class="mt-2 text-smoke text-sm leading-[1.7]">Co-founds Operation Helo with Operation Airdrop, flying relief to neighbors across Western North Carolina.</p>
-          </li>
-          <li class="reveal relative pl-9 border-l border-transparent">
-            <span class="absolute left-[-5px] top-1 w-[9px] h-[9px] bg-signal rotate-45" aria-hidden="true"></span>
-            <p class="micro-label text-signal">Today — American Helicopter Company</p>
-            <p class="mt-2 text-smoke text-sm leading-[1.7]">Authorized Robinson dealer and trusted partner to leading aviation brands, serving businesses, communities, and private pilots.</p>
-          </li>
-        </ol>
-      </div>
-
-      <div class="grid grid-cols-2 gap-5 lg:mt-6">
-        <div class="reveal photo-treat aspect-[10/13] mt-10">
-          <img src="assets/matt2-400x516.jpg" alt="Founder Matt McSwain standing beside a red Robinson R44" loading="lazy">
-        </div>
-        <div class="reveal photo-treat aspect-[10/13]">
-          <img src="assets/matt1-400x516.jpg" alt="Founder Matt McSwain, portrait" loading="lazy">
-        </div>
-        <figure class="reveal col-span-2 mt-4 border-l-[3px] border-signal pl-6">
-          <blockquote class="font-display font-700 uppercase text-2xl sm:text-3xl leading-[1.05] tracking-tight text-bone">"Robinson kept its ships in the fight. I wanted to be part of that commitment."</blockquote>
-          <figcaption class="micro-label text-smoke mt-4">Matt McSwain — Founder, USMC Veteran</figcaption>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PRE-OWNED ============ -->
-<section id="preowned" class="relative bg-hangar grain overflow-hidden border-t border-bone/8">
-  <span class="sec-num absolute top-10 right-4 sm:right-10 text-[clamp(6rem,16vw,15rem)]" aria-hidden="true">05</span>
-  <div class="max-w-[1500px] mx-auto px-5 sm:px-8 py-24 sm:py-32 grid lg:grid-cols-2 gap-14 items-center">
-    <div>
-      <p class="reveal micro-label text-signal mb-4">005 / Pre-Owned</p>
-      <h2 class="reveal display-hed font-black text-[clamp(3rem,7vw,6rem)] text-bone">Good ships<br>don't sit long.</h2>
-      <p class="reveal mt-6 text-smoke leading-[1.8] max-w-md">Pre-owned Robinsons and aircraft from leading brands move fast — most sell before they're ever listed. Tell us what you're looking for and we'll call you the moment it lands.</p>
-      <div class="reveal mt-10 flex flex-wrap gap-4">
-        <a href="tel:7049068473" class="btn-signal">Call for Inventory</a>
-        <a href="#contact" class="btn-ghost">Request the List</a>
-      </div>
-    </div>
-    <div class="reveal">
-      <div class="border border-bone/12 p-8 sm:p-10 bg-gunmetal/60">
-        <p class="micro-label text-smoke">Current Availability</p>
-        <p class="display-hed font-black text-4xl sm:text-5xl text-bone mt-4">By request only</p>
-        <div class="blueprint-rule my-7"></div>
-        <ul class="space-y-4 text-sm text-smoke leading-[1.7]">
-          <li class="flex gap-3"><span class="text-signal mt-[2px]">★</span> Every airframe inspected and represented honestly</li>
-          <li class="flex gap-3"><span class="text-signal mt-[2px]">★</span> Robinson R22, R44 &amp; R66 plus other leading brands</li>
-          <li class="flex gap-3"><span class="text-signal mt-[2px]">★</span> Trade-ins welcome toward a new factory build</li>
-        </ul>
-        <div class="blueprint-rule my-7"></div>
-        <p class="text-bone font-semibold">704.906.8473 · <a href="mailto:info@americanhelicoptercompany.com" class="underline decoration-signal underline-offset-4 hover:text-signal transition-colors">info@americanhelicoptercompany.com</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section id="contact" class="relative bg-bone text-hangar grain overflow-hidden">
-  <span class="sec-num sec-num-light absolute top-10 right-4 sm:right-10 text-[clamp(6rem,16vw,15rem)]" aria-hidden="true">06</span>
-  <div class="max-w-[1500px] mx-auto px-5 sm:px-8 py-24 sm:py-32 grid lg:grid-cols-[1fr_1.15fr] gap-16">
-    <div>
-      <p class="reveal micro-label text-signal mb-4">006 / Contact</p>
-      <h2 class="reveal display-hed font-black text-[clamp(3rem,7vw,6rem)]">Come kick<br>the tires.</h2>
-      <p class="reveal mt-6 text-hangar/70 leading-[1.8] max-w-md">The hangar door is open. Call, write, or come see the ships in person at the Maiden airfield.</p>
-      <div class="reveal mt-12 space-y-8">
-        <div>
-          <p class="micro-label text-hangar/50">The Hangar</p>
-          <p class="font-display font-800 uppercase text-2xl tracking-tight mt-2">3524 Airport Road<br>Maiden, NC 28650</p>
-        </div>
-        <div>
-          <p class="micro-label text-hangar/50">Direct Line</p>
-          <a href="tel:7049068473" class="font-display font-800 uppercase text-2xl tracking-tight mt-2 inline-block hover:text-signal transition-colors">704.906.8473</a>
-        </div>
-        <div>
-          <p class="micro-label text-hangar/50">Email</p>
-          <a href="mailto:info@americanhelicoptercompany.com" class="font-display font-800 uppercase text-xl sm:text-2xl tracking-tight mt-2 inline-block hover:text-signal transition-colors break-all">info@americanhelicoptercompany.com</a>
-        </div>
-      </div>
-    </div>
-
-    <form class="reveal bg-hangar text-bone p-8 sm:p-12 relative" style="clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%)" onsubmit="event.preventDefault(); this.querySelector('.form-done').classList.remove('hidden'); this.querySelector('.form-fields').classList.add('hidden');">
-      <div class="form-fields">
-        <p class="micro-label text-signal">Start the conversation</p>
-        <h3 class="display-hed font-black text-3xl sm:text-4xl mt-3">Tell us about your mission</h3>
-        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-2 mt-8">
-          <label class="block"><span class="sr-only">Name</span><input class="field" type="text" name="name" placeholder="Name" autocomplete="name" required></label>
-          <label class="block"><span class="sr-only">Email</span><input class="field" type="email" name="email" placeholder="Email Address" autocomplete="email" required></label>
-          <label class="block"><span class="sr-only">Phone</span><input class="field" type="tel" name="phone" placeholder="Phone" autocomplete="tel"></label>
-          <label class="block"><span class="sr-only">Location</span><input class="field" type="text" name="location" placeholder="Location"></label>
-        </div>
-        <label class="block mt-2"><span class="sr-only">Message</span><textarea class="field" name="message" rows="4" placeholder="What are you flying — or what do you want to fly?"></textarea></label>
-        <div id="attach-chip" class="hidden mt-6 items-center gap-3 border border-signal/60 bg-signal/10 px-4 py-3">
-          <svg class="shrink-0" width="14" height="15" viewBox="0 0 13 14" fill="none" aria-hidden="true"><path d="M11.5 6.5l-5 5a3.2 3.2 0 01-4.5-4.5L7.5 1.5a2.1 2.1 0 013 3L5 10a1 1 0 01-1.5-1.5L8 4" stroke="#E8362F" stroke-width="1.3" stroke-linecap="round"/></svg>
-          <span class="text-sm text-bone truncate" id="attach-chip-name"></span>
-          <span class="micro-label text-smoke ml-auto shrink-0">Build sheet attached</span>
-          <button type="button" id="attach-remove" class="text-smoke hover:text-bone text-xl leading-none px-1" aria-label="Remove attachment">×</button>
-        </div>
-        <p class="micro-label text-smoke mt-8 mb-4">I'm interested in</p>
-        <div class="flex flex-wrap gap-3">
-          <label class="check-chip relative border border-bone/25 px-5 py-2.5 text-sm font-medium"><input type="checkbox" name="interest" value="R66">R66</label>
-          <label class="check-chip relative border border-bone/25 px-5 py-2.5 text-sm font-medium"><input type="checkbox" name="interest" value="R44">R44</label>
-          <label class="check-chip relative border border-bone/25 px-5 py-2.5 text-sm font-medium"><input type="checkbox" name="interest" value="R22">R22</label>
-          <label class="check-chip relative border border-bone/25 px-5 py-2.5 text-sm font-medium"><input type="checkbox" name="interest" value="Pre-owned">Pre-Owned</label>
-          <label class="check-chip relative border border-bone/25 px-5 py-2.5 text-sm font-medium"><input type="checkbox" name="interest" value="Unsure">Not Sure Yet</label>
-        </div>
-        <button type="submit" class="btn-signal mt-10 w-full sm:w-auto justify-center">Send It</button>
-      </div>
-      <div class="form-done hidden py-16 text-center">
-        <p class="display-hed font-black text-4xl">Received.<span class="text-signal">★</span></p>
-        <p class="text-smoke mt-4">We'll get back to you within one business day.</p>
-      </div>
-    </form>
+<!-- ============ SITE INDEX ============ -->
+<section class="relative bg-hangar grain border-t border-bone/8">
+  <div class="max-w-[1500px] mx-auto px-5 sm:px-8 pt-20 sm:pt-28 pb-24 sm:pb-32">
+    <p class="reveal micro-label text-signal mb-10">Flight Plan / Where to next</p>
+    <nav aria-label="Site sections">
+      <a href="/build" class="index-row reveal group flex items-baseline gap-5 sm:gap-8 border-t border-bone/10 py-7 sm:py-9 px-2">
+        <span class="micro-label text-smoke w-10 shrink-0">002</span>
+        <span class="display-hed font-black text-[clamp(2rem,5.5vw,4.5rem)] text-bone">Build Your Robinson</span>
+        <span class="index-arrow display-hed font-black text-[clamp(1.6rem,4vw,3rem)] text-signal ml-auto shrink-0" aria-hidden="true">→</span>
+      </a>
+      <a href="/build#configurator" class="index-row reveal group flex items-baseline gap-5 sm:gap-8 border-t border-bone/10 py-7 sm:py-9 px-2">
+        <span class="micro-label text-smoke w-10 shrink-0">003</span>
+        <span class="display-hed font-black text-[clamp(2rem,5.5vw,4.5rem)] text-bone">Live 3D Configurator</span>
+        <span class="index-arrow display-hed font-black text-[clamp(1.6rem,4vw,3rem)] text-signal ml-auto shrink-0" aria-hidden="true">→</span>
+      </a>
+      <a href="/story" class="index-row reveal group flex items-baseline gap-5 sm:gap-8 border-t border-bone/10 py-7 sm:py-9 px-2">
+        <span class="micro-label text-smoke w-10 shrink-0">004</span>
+        <span class="display-hed font-black text-[clamp(2rem,5.5vw,4.5rem)] text-bone">Our Story</span>
+        <span class="index-arrow display-hed font-black text-[clamp(1.6rem,4vw,3rem)] text-signal ml-auto shrink-0" aria-hidden="true">→</span>
+      </a>
+      <a href="/preowned" class="index-row reveal group flex items-baseline gap-5 sm:gap-8 border-t border-bone/10 py-7 sm:py-9 px-2">
+        <span class="micro-label text-smoke w-10 shrink-0">005</span>
+        <span class="display-hed font-black text-[clamp(2rem,5.5vw,4.5rem)] text-bone">Pre-Owned</span>
+        <span class="index-arrow display-hed font-black text-[clamp(1.6rem,4vw,3rem)] text-signal ml-auto shrink-0" aria-hidden="true">→</span>
+      </a>
+      <a href="/contact" class="index-row reveal group flex items-baseline gap-5 sm:gap-8 border-y border-bone/10 py-7 sm:py-9 px-2">
+        <span class="micro-label text-smoke w-10 shrink-0">006</span>
+        <span class="display-hed font-black text-[clamp(2rem,5.5vw,4.5rem)] text-bone">Contact the Hangar</span>
+        <span class="index-arrow display-hed font-black text-[clamp(1.6rem,4vw,3rem)] text-signal ml-auto shrink-0" aria-hidden="true">→</span>
+      </a>
+    </nav>
   </div>
 </section>
 
@@ -677,11 +342,11 @@ tailwind.config = {
     <div class="grid md:grid-cols-[auto_1fr_auto] gap-12 items-start">
       <img src="assets/ahc-logo-2.png" alt="American Helicopter Company logo" class="h-28 w-auto" loading="lazy">
       <nav class="flex flex-wrap gap-x-10 gap-y-4 md:justify-center pt-2" aria-label="Footer">
-        <a href="#fleet" class="nav-link micro-label text-smoke hover:text-bone">The Fleet</a>
-        <a href="#build" class="nav-link micro-label text-smoke hover:text-bone">Build</a>
-        <a href="#story" class="nav-link micro-label text-smoke hover:text-bone">Our Story</a>
-        <a href="#preowned" class="nav-link micro-label text-smoke hover:text-bone">Pre-Owned</a>
-        <a href="#contact" class="nav-link micro-label text-smoke hover:text-bone">Contact</a>
+        <a href="/#fleet" class="nav-link micro-label text-smoke hover:text-bone">The Fleet</a>
+        <a href="/build" class="nav-link micro-label text-smoke hover:text-bone">Build</a>
+        <a href="/story" class="nav-link micro-label text-smoke hover:text-bone">Our Story</a>
+        <a href="/preowned" class="nav-link micro-label text-smoke hover:text-bone">Pre-Owned</a>
+        <a href="/contact" class="nav-link micro-label text-smoke hover:text-bone">Contact</a>
       </nav>
       <div class="text-right md:text-right text-sm text-smoke leading-[1.8]">
         <p class="text-bone font-semibold">American Helicopter Company, LLC</p>
@@ -704,13 +369,11 @@ tailwind.config = {
 gsap.registerPlugin(ScrollTrigger);
 const noanim = new URLSearchParams(location.search).has('noanim');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches || noanim;
-// Screenshot mode: full-page captures misplace fixed elements, so pin the nav to page top
 if (noanim) document.getElementById('site-nav').style.position = 'absolute';
 
 /* ---------- nav ---------- */
 const nav = document.getElementById('site-nav');
 addEventListener('scroll', () => nav.classList.toggle('nav-scrolled', scrollY > 40), { passive: true });
-
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 menuBtn.addEventListener('click', () => {
@@ -722,7 +385,6 @@ menuBtn.addEventListener('click', () => {
   bars[1].style.opacity = open ? '0' : '1';
   bars[2].style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
 });
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menuBtn.click()));
 
 /* ---------- hero load-in ---------- */
 if (!reduceMotion) {
@@ -733,13 +395,13 @@ if (!reduceMotion) {
     .to('.hero-el', { y: 0, opacity: 1, duration: 0.9, stagger: 0.12 }, 0.75);
 }
 
-/* ---------- scroll reveals (varied per section) ---------- */
+/* ---------- scroll reveals ---------- */
 if (!reduceMotion) {
   const entrances = [
-    { y: 44, opacity: 0 },                    // fade-up
-    { x: -52, opacity: 0 },                   // slide-left
-    { x: 52, opacity: 0 },                    // slide-right
-    { scale: 0.92, opacity: 0, transformOrigin: '50% 100%' }, // scale-up
+    { y: 44, opacity: 0 },
+    { x: -52, opacity: 0 },
+    { x: 52, opacity: 0 },
+    { scale: 0.92, opacity: 0, transformOrigin: '50% 100%' },
   ];
   document.querySelectorAll('section, footer').forEach((sec, si) => {
     const from = entrances[si % entrances.length];
@@ -776,6 +438,7 @@ const FLEET = {
     img: 'assets/R66-Riviera-front-v2.png',
     alt: 'Robinson R66 turbine helicopter, front view',
     price: '$1,387,000',
+    slug: 'r66-nx-g-palo-verde',
     specs: [
       ['Seats', '5'],
       ['Engine', 'Rolls-Royce RR300 Turbine'],
@@ -790,6 +453,7 @@ const FLEET = {
     img: 'assets/RAVEN-II-FRONT-ALPHA.png',
     alt: 'Robinson R44 Raven II helicopter, front view',
     price: '$495,000',
+    slug: 'r44-raven-ii',
     specs: [
       ['Seats', '4'],
       ['Engine', 'Lycoming IO-540'],
@@ -804,6 +468,7 @@ const FLEET = {
     img: 'assets/R22-RED-VOLCANO-FRONT-ALPHA-V3.png',
     alt: 'Robinson R22 Beta II helicopter, front view',
     price: '$375,000',
+    slug: 'r22-beta-ii',
     specs: [
       ['Seats', '2'],
       ['Engine', 'Lycoming O-360'],
@@ -819,6 +484,7 @@ const fleetTag = document.getElementById('fleet-tag');
 const fleetDesc = document.getElementById('fleet-desc');
 const fleetSpecs = document.getElementById('fleet-specs');
 const fleetPrice = document.getElementById('fleet-price');
+const fleetBuildBtn = document.getElementById('fleet-build-btn');
 
 function renderFleet(key, animate = true) {
   const d = FLEET[key];
@@ -829,6 +495,7 @@ function renderFleet(key, animate = true) {
     fleetPrice.textContent = d.price;
     fleetImg.src = d.img;
     fleetImg.alt = d.alt;
+    fleetBuildBtn.href = `/build?model=${d.slug}`;
     fleetSpecs.innerHTML = d.specs.map(([k, v]) => `
       <div>
         <dt class="micro-label text-smoke">${k}</dt>
@@ -849,74 +516,9 @@ document.querySelectorAll('.fleet-tab').forEach(t =>
   t.addEventListener('click', () => renderFleet(t.dataset.fam)));
 renderFleet('r66', false);
 
-/* gentle float on the fleet helicopter */
 if (!reduceMotion) {
   gsap.to(fleetImg, { y: -12, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
 }
-
-/* ---------- live configurator ---------- */
-const cfgFrame = document.getElementById('cfg-frame');
-const cfgCurrent = document.getElementById('cfg-current');
-const CFG_NAMES = {
-  'r22-beta-ii': 'R22 Beta II', 'r44-cadet': 'R44 Cadet', 'r44-cadet-with-floats': 'R44 Cadet with Floats',
-  'r44-raven-i': 'R44 Raven I', 'r44-raven-ii': 'R44 Raven II', 'r44-clipper-i': 'R44 Clipper I',
-  'r44-clipper-ii-fixed': 'R44 Clipper II Fixed', 'r44-clipper-ii-popout': 'R44 Clipper II Popout',
-  'r66-nx-g-palo-verde': 'R66 NXG Palo Verde', 'r66-nx-g-southwood': 'R66 NXG Southwood',
-};
-let cfgSlug = 'r44-cadet';
-
-function loadConfig(slug) {
-  if (!CFG_NAMES[slug] || slug === cfgSlug) {
-    if (slug === cfgSlug) return;
-  }
-  cfgSlug = slug;
-  cfgFrame.src = `https://configurator.robinsonheli.com/?helicopter=${slug}&menu=helicopter`;
-  cfgCurrent.textContent = CFG_NAMES[slug];
-  document.getElementById('cfg-fullscreen').href = `https://configurator.robinsonheli.com/?helicopter=${slug}&menu=helicopter`;
-  document.querySelectorAll('.cfg-chip').forEach(c => c.classList.toggle('active', c.dataset.slug === slug));
-}
-document.querySelectorAll('.cfg-chip').forEach(chip =>
-  chip.addEventListener('click', () => loadConfig(chip.dataset.slug)));
-document.querySelector('.cfg-chip[data-slug="r44-cadet"]')?.classList.add('active');
-
-/* build cards deep-link into the configurator; the Riviera inquires via contact */
-document.querySelectorAll('.build-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const { slug, model, inquire } = card.dataset;
-    if (slug) { loadConfig(slug); return; }
-    if (inquire) {
-      const ta = document.querySelector('#contact textarea[name="message"]');
-      if (ta && !ta.value) ta.value = `I'd like to inquire about the ${model}.`;
-    }
-  });
-});
-
-/* fleet CTA opens the configurator on that family's flagship */
-const FAMILY_DEFAULT = { r66: 'r66-nx-g-palo-verde', r44: 'r44-raven-ii', r22: 'r22-beta-ii' };
-let currentFamily = 'r66';
-document.querySelectorAll('.fleet-tab').forEach(t =>
-  t.addEventListener('click', () => { currentFamily = t.dataset.fam; }));
-document.getElementById('fleet-build-btn').addEventListener('click', () => loadConfig(FAMILY_DEFAULT[currentFamily]));
-
-/* ---------- attach build sheet → contact form ---------- */
-const buildFile = document.getElementById('build-file');
-const attachChip = document.getElementById('attach-chip');
-document.getElementById('attach-build').addEventListener('click', () => buildFile.click());
-buildFile.addEventListener('change', () => {
-  const f = buildFile.files[0];
-  if (!f) return;
-  document.getElementById('attach-chip-name').textContent = f.name;
-  attachChip.classList.remove('hidden');
-  attachChip.classList.add('flex');
-  const ta = document.querySelector('#contact textarea[name="message"]');
-  if (ta && !ta.value) ta.value = `I've configured a ${CFG_NAMES[cfgSlug]} — my Robinson build sheet is attached. Please quote delivered pricing and timeline.`;
-  document.getElementById('contact').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
-});
-document.getElementById('attach-remove').addEventListener('click', () => {
-  buildFile.value = '';
-  attachChip.classList.add('hidden');
-  attachChip.classList.remove('flex');
-});
 </script>
 </body>
 </html>
