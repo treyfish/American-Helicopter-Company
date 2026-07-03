@@ -180,10 +180,11 @@ tailwind.config = {
       </div>
     </div>
 
-    <form class="reveal bg-hangar text-bone p-8 sm:p-12 relative" style="clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%)" onsubmit="event.preventDefault(); this.querySelector('.form-done').classList.remove('hidden'); this.querySelector('.form-fields').classList.add('hidden');">
+    <form class="reveal bg-hangar text-bone p-8 sm:p-12 relative" style="clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%)" onsubmit="event.preventDefault(); if (this._gotcha.value) return; this.querySelector('.form-done').classList.remove('hidden'); this.querySelector('.form-fields').classList.add('hidden');">
       <div class="form-fields">
         <p class="micro-label text-signal">Start the conversation</p>
         <h2 class="display-hed font-black text-3xl sm:text-4xl mt-3">Tell us about your mission</h2>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
         <div class="grid sm:grid-cols-2 gap-x-8 gap-y-2 mt-8">
           <label class="block"><span class="sr-only">Name</span><input class="field" type="text" name="name" placeholder="Name" autocomplete="name" required></label>
           <label class="block"><span class="sr-only">Email</span><input class="field" type="email" name="email" placeholder="Email Address" autocomplete="email" required></label>

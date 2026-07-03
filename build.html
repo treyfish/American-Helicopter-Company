@@ -319,6 +319,7 @@ tailwind.config = {
         <div class="form-fields">
           <p class="micro-label text-signal">Send your build to the hangar</p>
           <h3 class="display-hed font-black text-3xl mt-3 text-bone">Get delivered pricing</h3>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
           <div class="grid sm:grid-cols-2 gap-x-8 gap-y-2 mt-6">
             <label class="block"><span class="sr-only">Name</span><input class="field" type="text" name="name" placeholder="Name" autocomplete="name" required></label>
             <label class="block"><span class="sr-only">Email</span><input class="field" type="email" name="email" placeholder="Email Address" autocomplete="email" required></label>
@@ -479,6 +480,7 @@ document.getElementById('attach-remove').addEventListener('click', () => {
 });
 document.getElementById('build-lead').addEventListener('submit', e => {
   e.preventDefault();
+  if (e.target._gotcha.value) return;   // honeypot: bots fill it, humans never see it
   e.target.querySelector('.form-fields').classList.add('hidden');
   e.target.querySelector('.form-done').classList.remove('hidden');
 });
