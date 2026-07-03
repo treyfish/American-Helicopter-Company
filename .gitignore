@@ -3,3 +3,4 @@ temporary screenshots/
 .playwright-mcp/
 .vercel
 .DS_Store
+.env*
