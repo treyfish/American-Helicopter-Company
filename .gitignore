@@ -1,0 +1,5 @@
+node_modules/
+temporary screenshots/
+.playwright-mcp/
+.vercel
+.DS_Store
